@@ -4,8 +4,35 @@ env = {
         '+': lambda v, e: sum(v),
         '-': lambda v, e: v[0] - v[1],
         '*': lambda v, e: v[0] * v[1],
-        '/': lambda v, e: v[0] / v[1]
+        '/': lambda v, e: v[0] / v[1],
+        'print': lambda v, e: print(v),
     }
+
+# Try implementing the following:
+# ['begin', [...], e]
+# ['if', [BOOL_EXP], ['begin', [...], e], e]
+
+def begin(v, e):
+    if type(v) is list:
+        if len(v) == 0:
+            return None
+        
+        for i in v[:]:
+            evaluate(v[i:], e)
+    if type(v) is str:
+        return resolve(v, e)
+    return v
+
+def If(b, v, e):
+    
+
+    return
+
+def resolve_Bool(v, e):
+
+
+    return
+
 
 def resolve(s, e):
     #return e.get(s, None)
@@ -57,6 +84,7 @@ def test_evaluate():
     assert evaluate(['set', 'q', ['+', 5, 6]], env) == None
     assert env['q'] == 11
     evaluate(['print', 2, 3, 4], env)
+    begin(['print', ['set', 'x', ['+', 10, 15]], env], ], env)
 
 def test_resolve():
     print("test_resolve")
